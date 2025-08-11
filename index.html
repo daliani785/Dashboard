@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Web Ayam</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .box {
+            border-radius: 14px;
+            padding: 15px;
+            margin-bottom: 18px;
+        }
+
+        .box-dark {
+            background: #0d2a4f;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .status {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .big-text {
+            font-weight: 800;
+            font-size: 1.9rem;
+        }
+
+        /* inner area used by Grafik and Kontrol */
+        .inner-area {
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 10px;
+            min-height: 140px;
+        }
+
+        /* control-card (warna gradasi) */
+        .control-card {
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+        }
+
+        .control-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .box-gradient-orange {
+            background: linear-gradient(90deg, #ff7a18, #ff0066);
+            color: white;
+        }
+
+        .box-gradient-blue {
+            background: linear-gradient(90deg, #007cf0, #00dfd8);
+            color: white;
+        }
+
+        .box-gradient-yellow {
+            background: linear-gradient(90deg, #ffb300, #ffc951);
+            color: #111;
+        }
+
+        /* tombol kecil */
+        .btn-sm-custom {
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .card {
+            background: #0d2a4f;
+
+            color: white;
+        }
+
+        .card-hover:hover {
+            box-shadow: 0 6px 18px rgba(169, 35, 247, 0.6);
+        }
+
+        /* responsive spacing tweak */
+        @media (max-width: 768px) {
+            .big-text {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row g-3">
+            <!-- Kolom kiri -->
+            <div class="col-md-8">
+                <!-- header -->
+                <div class="box box-dark d-flex align-items-center justify-content-between "
+                    style="background:#353434;">
+                    <img src="logoAyam.png" alt="Ayam" width="150px">
+                    <div style="text-align: end;">
+                        <h2 style="color: #ffb300;">DASHBOARD MONITORING KANDANG AYAM</h2>
+                        <p>Selamat Datang! <span style="color:#56c6ff">Ayam Sehat, Telurpun
+                                Lezat!</span>
+                        </p>
+                        <div class="big-text">13:41:30</div>
+                    </div>
+
+                </div>
+
+                <!-- Kandangku -->
+                <div class="box box-dark">
+                    <h3>Kandangku</h3>
+                    <div class="row text-center mb-2 mt-4">
+                        <div class="col">
+
+                            <div class="card card-hover" style="width: 16rem; height: 7rem;">
+                                <div class="card-body">
+
+                                    <div class="status" style="text-align: end;">Jumlah Ayam</div>
+
+                                    <div class="big-text">3200 ekor</div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col">
+                            <div class="card card-hover" style="width: 16rem; height: 7rem; ">
+                                <div class="card-body">
+                                    <div class="status" style="text-align: end;">Jumlah Pakan</div>
+                                    <div class="big-text">510 Kg</div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card card-hover" style="width: 16rem; height: 7rem; ">
+                                <div class="card-body">
+                                    <div class="status" style="text-align: end;">Air Minum</div>
+                                    <div class="big-text">180 L</div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+
+                    
+                    <div class="col-md-7">
+
+                        <!-- Intensitas Cahaya -->
+                        <div class="box"
+                            style="width: 34rem; background: linear-gradient(90deg,#ffb300,#ffd86b); color:#111">
+                            <div class="title">💡 Intensitas Cahaya</div>
+                            <div class="status">Status Lampu: <b style="color:green">MENYALA</b></div>
+                            <div class="big-text">48699 Lux</div>
+                        </div>
+
+                        <!-- ketinggian lokasi -->
+                        <div class="box box-dark" style="width: 34rem;">
+                            <div class="title">⛰️ Ketinggian Lokasi</div>
+                            <div class="big-text" style="text-align: end;">452.8 mdpl</div>
+                            <div class="status">Dari permukaan laut</div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card text-white p-3" style="height: 270px; width: 21rem; background-color: #111;">
+                            
+                            <h3>🌡️ Suhu Kandang</h3>
+                            <p>Status: <span class="text-success">IDEAL</span></p>
+                            
+                            <h1 style="text-align: center; font-size: 5rem;">27.6°C</h1>
+                            <div class="progress" style="height: 15px; border-radius: 10px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 60%;"
+                                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                    
+                                </div>
+                            </div>
+                            <small style="text-align: center;">Rekomendasi: 24–30°C untuk ayam petelur</small>
+                        </div>
+                        
+                    </div>
+
+                    
+                </div>
+            </div>
+
+            <!-- Kolom kanan -->
+            <div class="col-md-4">
+                <!-- Grafik -->
+                <div class="box box-dark">
+                    <div class="title">Grafik Suhu &amp; Kelembapan</div>
+                    <canvas id="grafikSuhuKelembapan" height="120"></canvas>
+
+                    <!-- inner-area (box di dalam box) -->
+
+                </div>
+
+                <!-- Kontrol Peralatan (outer) -->
+                <div class="box box-dark">
+                    <div class="title">Kontrol Peralatan</div>
+
+                    <!-- inner-area: box di dalam box → berisi control cards -->
+                    <div class="inner-area">
+                        <!-- Kipas -->
+                        <div class="control-card box-gradient-orange">
+                            <div class="control-left">
+                                <div class="icon-round">🌀</div>
+                                <div>
+                                    <div style="font-weight:700">Kipas</div>
+                                    <div class="status" style="opacity:0.9">Status: <span
+                                            style="font-weight:800">Mati</span></div>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-light btn-sm btn-sm-custom">Nyalakan</button>
+                            </div>
+                        </div>
+
+                        <!-- Pompa -->
+                        <div class="control-card box-gradient-blue">
+                            <div class="control-left">
+                                <div class="icon-round">💧</div>
+                                <div>
+                                    <div style="font-weight:700">Pompa</div>
+                                    <div class="status" style="opacity:0.9">Status: <span
+                                            style="font-weight:800">Mati</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-light btn-sm btn-sm-custom">Nyalakan</button>
+                            </div>
+                        </div>
+
+                        <!-- Pakan -->
+                        <div class="control-card box-gradient-yellow">
+                            <div class="control-left">
+                                <div class="icon-round">🍽️</div>
+                                <div>
+                                    <div style="font-weight:700">Pakan</div>
+                                    <div class="status" style="opacity:0.9">Status: <span
+                                            style="font-weight:800">Mati</span></div>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-light btn-sm btn-sm-custom">Nyalakan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- js -->
+    <script>
+        const ctx = document.getElementById('grafikSuhuKelembapan').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['13:32', '13:33', '13:34', '13:35', '13:36', '13:37', '13:38'],
+                datasets: [
+                    {
+                        label: 'Suhu (°C)',
+                        data: [27, 27, 27.1, 27.1, 27.2, 27.2, 27.2],
+                        borderColor: '#FFD700',
+                        backgroundColor: '#FFD700',
+                        tension: 0.3,
+                        fill: false,
+                        yAxisID: 'y',
+                    },
+                    {
+                        label: 'Kelembapan (%)',
+                        data: [65, 66, 64, 63, 65, 64, 66],
+                        borderColor: '#00BFFF',
+                        backgroundColor: '#00BFFF',
+                        tension: 0.3,
+                        fill: false,
+                        yAxisID: 'y1',
+                    },
+                    {
+                        label: 'Tekanan (hPa)',
+                        data: [1010, 1010, 1011, 1010, 1011, 1010, 1011],
+                        borderColor: '#FF69B4',
+                        backgroundColor: '#FF69B4',
+                        tension: 0.3,
+                        fill: false,
+                        yAxisID: 'y2',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: { color: '#fff' }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#fff' },
+                        grid: { color: 'rgba(255,255,255,0.1)' }
+                    },
+                    y: {
+                        position: 'left',
+                        ticks: { color: '#FFD700' },
+                        grid: { color: 'rgba(255,255,255,0.1)' }
+                    },
+                    y1: {
+                        position: 'right',
+                        ticks: { color: '#00BFFF' },
+                        grid: { drawOnChartArea: false }
+                    },
+                    y2: {
+                        position: 'right',
+                        display: false // Tekanan tidak ditampilkan di sumbu terpisah
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
